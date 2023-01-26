@@ -1,0 +1,28 @@
+import { Pipe, PipeTransform } from '@angular/core';
+import { Todo } from './models/todo.model';
+import { filterValids } from '../filter/filter.actions';
+
+@Pipe({
+  name: 'filtroTodo'
+})
+export class FiltroPipe implements PipeTransform {
+
+  transform(todos: Todo[], filtro: filterValids): Todo[] {
+
+    
+
+    switch(filtro){
+
+      case 'completados':
+        return todos.filter(todo => todo.complete);
+
+      case 'pendientes':
+        return todos.filter(todo => !todo.complete)
+
+      default: 
+        return todos
+    }
+
+  }
+
+}
